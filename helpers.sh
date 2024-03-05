@@ -121,15 +121,15 @@ function other(){
 }
 
 function session(){
-        echo -ne "\n\t${redColour} We are closing the session to apply the new configuration, be sure to select the BSPWN.${endColour}" && read a
-        sleep 20 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '|' '/'; do echo -en "\b$X"; sleep 0.1; done; done
+        echo -ne "\n\t${redColour} We are closing the session to apply the new configuration, be sure to select the BSPWN.${endColour}" 
         kill -9 -1
 }
 
 function clean(){
-        echo -ne "\n\t${purpleColour} We are cleaning everything$.${endColour}" && read a
+        echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         rm -rf "/home/$SUDO_USER/Downloads/"
         sudo apt autoremove -y
+        
 }
 
 function helpPanel(){
