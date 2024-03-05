@@ -21,7 +21,7 @@ function ctrl_c(){
         tput cnorm; exit 1
 }
 function check(){
-  if [ "$(id -u)" == "0" ]; then
+  if [ "$(id -u)" == "0" ] && [ -z "$SUDO_USER" ]; then
     echo -e "\n${redColour}[!]Do not run this script as root${endColour}\n"
     tput cnorm; exit 1
   fi
