@@ -123,6 +123,7 @@ function other(){
 
 function session(){
         echo -ne "\n\t${redColour} We are closing the session to apply the new configuration, be sure to select the BSPWN.${endColour}" 
+        sleep 5
         kill -9 -1
 }
 
