@@ -155,7 +155,7 @@ if [ $parameter_counter -eq 0 ]; then
   helpPanel
 else
   if [ $(echo $Mode) == "scriptMode" ]; then
-    check
+    #check
     other
     script
     clean
