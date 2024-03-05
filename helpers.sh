@@ -57,15 +57,17 @@ function script(){
         make -j$(nproc)
         sudo make install
         echo -e "${greenColour}Download powerlevel10k.${endColour}"
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$SUDO_USER/powerlevel10k
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k
-        echo -e "${greenColour}Install Hack Nerd Fonts.${endColour}" 
+        echo -e "${greenColour}Install Hack Nerd Fonts.${endColour}"
+        cd /home/$SUDO_USER/Downloads 
         wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.2/Hack.zip
         unzip Hack.zip > /dev/null 2>&1 && sudo mv *.ttf /usr/local/share/fonts/
         rm Hack.zip LICENSE.md readme.md
         echo -e "${greenColour}Configuration wallpaper.${endColour}"
+        cd /home/$SUDO_USER/Downloads
         cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
-        echo -e "${greenColo/home/$SUDO_USER/Downloads/Entornour}Install plugin sudo.${endColour}"
+        echo -e "${greenColour}Install plugin sudo.${endColour}"
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
         sudo cp sudo.plugin.zsh /usr/share/zsh-plugins/
         echo -e "${greenColour}Install fzf.${endColour}"
