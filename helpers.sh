@@ -48,6 +48,7 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/bspwmrc"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/picom/picom.conf"
         echo -e "${greenColour}Polybar compilation .${endColour}"
         git clone --recursive https://github.com/polybar/polybar
         cd polybar/
@@ -69,7 +70,7 @@ function script(){
         cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
         echo -e "${greenColour}Install plugin sudo.${endColour}"
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-        sudo cp sudo.plugin.zsh /usr/share/   
+        sudo cp sudo.plugin.zsh /usr/share/zsh-sudo/   
         echo -e "${greenColour}Install fzf.${endColour}"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         /home/$SUDO_USER/.fzf/install --all
