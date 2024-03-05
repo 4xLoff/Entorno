@@ -114,6 +114,7 @@ function hacker(){
 
 function other(){       
         echo -e "${greenColour}Update system.${endColour}"
+        echo "console-setup   console-setup/charmap47   select  Guess optimal character set" | sudo debconf-set-selections
         sudo apt update && sudo apt -y full-upgrade
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
