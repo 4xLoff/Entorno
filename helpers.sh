@@ -160,15 +160,15 @@ function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         rm -rf "/home/$SUDO_USER/Downloads/*"
         sudo apt autoremove -y
-        
 }
 
 function helpPanel(){
-  echo -e "\n${greenColour}[!] Uso: sudo $0 -i ${endColour}"
-  echo -e "\n\t${blueColour}[-i] Version install.${endColour}"
-  echo -e "\n\t\t${turquoiseColour} scriptMode${endColour}\t\t${yellowColour} Basic installation (bspwn + polyvar + picom + powerlevelk + kitty + zsh)${endColour}"
-  echo -e "\n\t\t${purpleColour} hackerMode${endColour}\t\t${yellowColour} Full installation (Bascic intallation + obsidian + vsc + spotify + latex)${endColour}"
-  echo -e "\n\t${redColour}[-h] Show help panel.${endColour}"
+        echo -e "\n${greenColour}[!] Uso: sudo $0 -i ${endColour}"
+        echo -e "\n\t${blueColour}[-i] Version install.${endColour}"
+        echo -e "\n\t\t${turquoiseColour} scriptMode${endColour}\t\t${yellowColour} Basic installation (bspwn + polyvar + picom + powerlevelk + kitty + zsh)${endColour}"
+        echo -e "\n\t\t${purpleColour} hackerMode${endColour}\t\t${yellowColour} Full installation (Bascic intallation + obsidian + vsc + spotify + latex)${endColour}"
+        echo -e "\n\t${redColour}[-h] Show help panel.${endColour}"
+        tput cnorm; exit 1
 }
 
 declare -i parameter_counter=0; while getopts ":i:h:" arg; do
