@@ -169,9 +169,10 @@ else
   elif [ $(echo $Mode) == "hackerMode" ]; then
     check
     other
-    #script
-    #hacker
-    #clean
+    script
+    hacker
+    clean
+    session
   else
     echo -e "${redColour}[!] Invalid options${endColour}"
     tput cnorm; exit 1
