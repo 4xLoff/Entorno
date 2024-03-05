@@ -35,7 +35,7 @@ function script(){
         echo -e "${greenColour}Install polybar dependecies.${endColour}"
         apt install -y cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev polybar 
         echo -e "${greenColour}Install picom dependencies.${endColour}"
-        apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev 
+        apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev framebuffer libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev 
         echo -e "${greenColour}Move files configuration.${endColour}"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwm" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/sxhkd" "/home/$SUDO_USER/.config/"
@@ -95,6 +95,8 @@ function script(){
         git clone https://github.com/noctuid/zscroll
         cd zscroll
         sudo python3 setup.py install
+        chmod +x /home/$SUDO_USER/.config/polybar/forest/scripts/scroll_spotify_status.sh
+        chmod +x /home/$SUDO_USER/.config/polybar/forest/scripts/target.sh
         echo -e "${greenColour}Create links.${endColour}"
         ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
         ln -s -f /home/$SUDO_USER/.p10k.zsh /root/.p10k.zsh
