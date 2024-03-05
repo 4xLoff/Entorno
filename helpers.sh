@@ -115,9 +115,8 @@ function hacker(){
 function other(){       
         echo -e "${greenColour}Update system.${endColour}"
         sudo apt update && sudo apt -y full-upgrade
-        echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
+        echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment,be sure to select the BSPWN.${endColour}"
         sleep 3
-        cd /home/$SUDO_USER/Downloads
         sudo apt install -y feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock fzf lsd bat pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig imagemagick ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
 }
 
