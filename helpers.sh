@@ -36,6 +36,16 @@ function script(){
         apt install -y cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev polybar 
         echo -e "${greenColour}Install picom dependencies.${endColour}"
         apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev framebuffer libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev 
+        echo -e "${greenColour}Install bspwn and sxhkd.${endColour}"
+        cd /home/$SUDO_USER/Downloads/
+        git clone https://github.com/baskerville/bspwm.git
+        git clone https://github.com/baskerville/sxhkd.git
+        cd bspwm/
+        make
+        sudo make install
+        cd ../sxhkd/
+        make
+        sudo make install        
         echo -e "${greenColour}Move files configuration.${endColour}"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwm" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/sxhkd" "/home/$SUDO_USER/.config/"
@@ -50,6 +60,7 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/picom/picom.conf"
         echo -e "${greenColour}Polybar compilation .${endColour}"
+        cd /home/$SUDO_USER/Downloads
         git clone --recursive https://github.com/polybar/polybar
         cd polybar/
         mkdir build
@@ -71,7 +82,15 @@ function script(){
         echo -e "${greenColour}Install plugin sudo.${endColour}"
         sudo mkdir /usr/share/zsh-sudo
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-        sudo cp sudo.plugin.zsh /usr/share/zsh-sudo/   
+        sudo cp sudo.plugin.zsh /usr/share/zsh-sudo/  
+        echo -e "${greenColour}Install batcat.${endColour}"
+        cd /home/$SUDO_USER/Downloads
+        wget https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
+        sudo dpkg -i bat-musl_0.24.0_amd64.deb
+        echo -e "${greenColour}Install lsd.${endColour}"
+        cd /home/$SUDO_USER/Downloads
+        wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
+        sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         /home/$SUDO_USER/.fzf/install --all
@@ -93,6 +112,9 @@ function script(){
         sudo rm -f /opt/nvim-linux64.tar.gz
         echo -e "${greenColour}Install spotify.${endColour}"
         sudo apt install playerctl -y
+        curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+        echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+        sudo apt-get install spotify-client
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/noctuid/zscroll
         cd zscroll
@@ -125,7 +147,7 @@ function other(){
         sudo apt update && sudo apt -y full-upgrade
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        sudo apt install -y feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock fzf lsd bat pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig imagemagick ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
+        sudo apt install -y feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick snap caja kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock fzf pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig imagemagick ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
 }
 
 function session(){
