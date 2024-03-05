@@ -24,8 +24,6 @@ function ctrl_c(){
 function script(){
         echo -e "${greenColour}The Bspwn environment will be installed.${endColour}"
         sleep 3
-        echo -e "${greenColour}Update system.${endColour}"
-        sudo apt update && sudo apt -y full-upgrade
         echo -e "${greenColour}Install core dependencies.${endColour}"
         apt install -y build-essential git vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev libxcb-xtest0-dev libxcb-shape0-dev
         echo -e "${greenColour}Install polybar dependecies.${endColour}"
@@ -108,7 +106,9 @@ function hacker(){
          sudo dpkg -i obsidian_1.5.8_amd64.deb
 }
 
-function other(){
+function other(){       
+        echo -e "${greenColour}Update system.${endColour}"
+        sudo apt update && sudo apt -y full-upgrade
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
         cd /home/$USER/Downloads
