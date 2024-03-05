@@ -20,6 +20,12 @@ function ctrl_c(){
         echo -e "\n\n${redColour}[!] Exiting...\n${endColour}"
         tput cnorm; exit 1
 }
+function check(){
+  if [ "$(id -u)" == "0" ]; then
+    echo -e "\n${redColour}[!]Do not run this script as root${endColour}\n"
+    tput cnorm; exit 1
+  fi
+}
 
 function script(){
         echo -e "${greenColour}The Bspwn environment will be installed.${endColour}"
@@ -31,17 +37,17 @@ function script(){
         echo -e "${greenColour}Install picom dependencies.${endColour}"
         apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev 
         echo -e "${greenColour}Move files configuration.${endColour}"
-        mkdir "/home/$USER/.config/bspwm"
-        mkdir "/home/$USER/.config/sxhkd"
-        cp -r "/home/$USER/Downloads/Entorno/picom" ~/.config/
-        cp -r ~/Downloads/Entorno/kitty ~/.config/
-        cp -r ~/Downloads/Entorno/rofi ~/.config/
-        cp -r ~/Downloads/Entorno/polybar ~/.config/
-        cp -r ~/Downloads/Entorno/.p10k.zsh "/home/$USER/"
-        cp -r ~/Downloads/Entorno/.zshrc "/home/$USER/"
-        chmod +x ~/.config/bspwm/bspwmrc
-        chmod +x ~/.config/bspwm/scripts/bspwm_resize
-        chmod +x ~/.config/polybar/launch.sh
+        sudo -u "$SUDO_USER" mkdir -p "/home/$SUDO_USER/.config/bspwm"
+        sudo -u "$SUDO_USER" mkdir -p "/home/$SUDO_USER/.config/sxhkd"
+        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/picom" "/home/$SUDO_USER/.config/"
+        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/kitty" "/home/$SUDO_USER/.config/"
+        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/rofi" "/home/$SUDO_USER/.config/"
+        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/polybar" "/home/$SUDO_USER/.config/"
+        sudo -u "$SUDO_USER" cp "/home/$SUDO_USER/Downloads/Entorno/.p10k.zsh" "/home/$SUDO_USER/"
+        sudo -u "$SUDO_USER" cp "/home/$SUDO_USER/Downloads/Entorno/.zshrc" "/home/$SUDO_USER/"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/bspwmrc"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
         echo -e "${greenColour}Polybar compilation .${endColour}"
         git clone --recursive https://github.com/polybar/polybar
         cd polybar/
@@ -58,24 +64,24 @@ function script(){
         unzip Hack.zip > /dev/null 2>&1 && sudo mv *.ttf /usr/local/share/fonts/
         rm Hack.zip LICENSE.md readme.md
         echo -e "${greenColour}Configuration wallpaper.${endColour}"
-        cp -r ~/Downloads/Entorno/3.png ~/Pictures/
-        echo -e "${greenColour}Install plugin sudo.${endColour}"
+        cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
+        echo -e "${greenColo/home/$SUDO_USER/Downloads/Entornour}Install plugin sudo.${endColour}"
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
         sudo cp sudo.plugin.zsh /usr/share/zsh-plugins/
         echo -e "${greenColour}Install fzf.${endColour}"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        ~/.fzf/install --all
+        /home/$SUDO_USER/.fzf/install --all
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
-        ~/.fzf/install --all &>/dev/null
+        /home/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         sudo ~/.fzf/install --all
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
         echo -e "${greenColour}Install nvcahd.${endColour}"
-        rm -rf ~/.config/nvim
+        rm -rf /home/$SUDO_USER/.config/nvim
         pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
-        git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-        git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 &>/dev/null
+        git clone https://github.com/NvChad/NvChad /home/$SUDO_USER/.config/nvim --depth 1
+        git clone https://github.com/NvChad/NvChad /home/$SUDO_USER/.config/nvim --depth 1 &>/dev/null
         sudo rm -rf /root/.config/nvim
         sudo git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1
         sudo git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
@@ -83,25 +89,25 @@ function script(){
         sudo rm -f /opt/nvim-linux64.tar.gz
         echo -e "${greenColour}Install spotify.${endColour}"
         sudo apt install playerctl -y
+        cd /home/$SUDO_USER/Downloads
         git clone https://github.com/noctuid/zscroll
         cd zscroll
         sudo python3 setup.py install
         echo -e "${greenColour}Create links.${endColour}"
-        ln -s -f ~/.zshrc /root/.zshrc
-        ln -s -f ~/.p10k.zsh /root/.p10k.zsh
-        usermod --shell /usr/bin/zsh $USER
+        ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
+        ln -s -f /home/$SUDO_USER/.p10k.zsh /root/.p10k.zsh
+        usermod --shell /usr/bin/zsh /home/$SUDO_USER
         usermod --shell /usr/bin/zsh root
-        chown $USER:$USER /root
-        chown $USER:$USER /root/.cache -R
-        chown $USER:$USER /root/.local -R
-
+        sudo -u "$SUDO_USER" chown -R "$SUDO_USER:$SUDO_USER" "/root"
+        sudo -u "$SUDO_USER" chown -R "$SUDO_USER:$SUDO_USER" "/root/.cache"
+        sudo -u "$SUDO_USER" chown -R "$SUDO_USER:$SUDO_USER" "/root/.local"
 }
 
 function hacker(){
          echo -e "${greenColour}The latex environment will be installed, this will take more than 30 minutes approximately..${endColour}"
          sleep 3
          apt install latexmk zathura rubber texlive-full -y --fix-missing
-         cd /home/$USER/Downloads
+         cd /home/$SUDO_USER/Downloads
          wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.8/obsidian_1.5.8_amd64.deb
          sudo dpkg -i obsidian_1.5.8_amd64.deb
 }
@@ -111,8 +117,8 @@ function other(){
         sudo apt update && sudo apt -y full-upgrade
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        cd /home/$USER/Downloads
-        sudo apt install -y feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick kitty ranger i3lock-fancy  wmname firejail cmatrix htop python3-pip procps tty-clock fzf lsd bat pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig imagemagick ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
+        cd /home/$SUDO_USER/Downloads
+        sudo apt install -y feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock fzf lsd bat pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig imagemagick ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
 }
 
 function session(){
@@ -124,7 +130,7 @@ function session(){
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything$.{endColour}" && read a
         sleep 3
-        rm -rf "$HOME/Downloads/"
+        rm -rf "/home/$SUDO_USER/Downloads/"
         sudo apt autoremove -y
 }
 
@@ -150,11 +156,13 @@ if [ $parameter_counter -eq 0 ]; then
   helpPanel
 else
   if [ $(echo $Mode) == "scriptMode" ]; then
+    check
     other
     script
     clean
-    #session
+    session
   elif [ $(echo $Mode) == "hackerMode" ]; then
+    check
     other
     #script
     #hacker
