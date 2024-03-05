@@ -69,6 +69,7 @@ function script(){
         cd /home/$SUDO_USER/Downloads
         cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
         echo -e "${greenColour}Install plugin sudo.${endColour}"
+        sudo mkdir /usr/share/zsh-sudo
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
         sudo cp sudo.plugin.zsh /usr/share/zsh-sudo/   
         echo -e "${greenColour}Install fzf.${endColour}"
