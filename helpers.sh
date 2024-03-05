@@ -69,7 +69,7 @@ function script(){
         cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
         echo -e "${greenColour}Install plugin sudo.${endColour}"
         wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-        sudo cp sudo.plugin.zsh /usr/share/zsh-plugins/
+        sudo cp sudo.plugin.zsh /usr/share/   
         echo -e "${greenColour}Install fzf.${endColour}"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         /home/$SUDO_USER/.fzf/install --all
@@ -96,6 +96,7 @@ function script(){
         cd zscroll
         sudo python3 setup.py install
         chmod +x /home/$SUDO_USER/.config/polybar/forest/scripts/scroll_spotify_status.sh
+        chmod +x /home/$SUDO_USER/.config/polybar/forest/scripts/get_spotify_status.sh
         chmod +x /home/$SUDO_USER/.config/polybar/forest/scripts/target.sh
         echo -e "${greenColour}Create links.${endColour}"
         ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
@@ -133,7 +134,7 @@ function session(){
 
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
-        rm -rf "/home/$SUDO_USER/Downloads/"
+        rm -rf "/home/$SUDO_USER/Downloads/*"
         sudo apt autoremove -y
         
 }
@@ -160,7 +161,7 @@ if [ $parameter_counter -eq 0 ]; then
   helpPanel
 else
   if [ $(echo $Mode) == "scriptMode" ]; then
-    #check
+    check
     other
     script
     clean
