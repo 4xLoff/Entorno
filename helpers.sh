@@ -37,7 +37,7 @@ function script(){
         echo -e "${greenColour}Install picom dependencies.${endColour}"
         apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev 
         echo -e "${greenColour}Move files configuration.${endColour}"
-        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwn" "/home/$SUDO_USER/.config/"
+        sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwm" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/sxhkd" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/picom" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/kitty" "/home/$SUDO_USER/.config/"
@@ -127,8 +127,7 @@ function session(){
 }
 
 function clean(){
-        echo -ne "\n\t${purpleColour} We are cleaning everything$.{endColour}" && read a
-        sleep 3
+        echo -ne "\n\t${purpleColour} We are cleaning everything$.${endColour}" && read a
         rm -rf "/home/$SUDO_USER/Downloads/"
         sudo apt autoremove -y
 }
