@@ -227,7 +227,7 @@ else
     hacker
     clean
     session
-  elif [ $(echo $Mode) == "muscicMode" ]; then
+  elif [ $(echo $Mode) == "musciMode" ]; then
     check
     other
     script
