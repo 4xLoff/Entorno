@@ -151,8 +151,8 @@ function script(){
         echo -e "${greenColour}Create links.${endColour}"
         sudo ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
         sudo ln -s -f /home/$SUDO_USER/.p10k.zsh /root/.p10k.zsh
-        usermod --shell /usr/bin/zsh $SUDO_USER
-        usermod --shell /usr/bin/zsh $USER
+        sudo usermod --shell /usr/bin/zsh $SUDO_USER
+        sudo usermod --shell /usr/bin/zsh $USER
         sudo chown "$SUDO_USER:$SUDO_USER" "/root"
         sudo chown "$SUDO_USER:$SUDO_USER" "/root/.cache" -R
         sudo chown "$SUDO_USER:$SUDO_USER" "/root/.local" -R
