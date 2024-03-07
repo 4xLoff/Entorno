@@ -60,6 +60,8 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/picom/picom.conf"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/kitty/kitty.conf"
+
         echo -e "${greenColour}Polybar compilation .${endColour}"
         cd /home/$SUDO_USER/Downloads
         git clone --recursive https://github.com/polybar/polybar
@@ -93,12 +95,8 @@ function script(){
         wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        /home/$SUDO_USER/.fzf/install --all
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
-        /home/$SUDO_USER/.fzf/install --all &>/dev/null
-        sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-        sudo ~/.fzf/install --all
+	      ~/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
         echo -e "${greenColour}Install nvcahd.${endColour}"
@@ -115,7 +113,7 @@ function script(){
         sudo apt install playerctl -y
         curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
         echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-        sudo apt-get install spotify-client
+        sudo apt-get update && sudo apt-get install spotify-client
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/noctuid/zscroll
         cd zscroll
