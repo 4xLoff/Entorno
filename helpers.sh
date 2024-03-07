@@ -131,7 +131,7 @@ function script(){
         sudo dpkg -i bat-musl_0.24.0_amd64.deb
         echo -e "${greenColour}Install lsd.${endColour}"
         cd /home/$SUDO_USER/Downloads
-        sudo -q wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
+        sudo wget -q https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
