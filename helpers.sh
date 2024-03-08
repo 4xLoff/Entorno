@@ -188,7 +188,7 @@ function spotify(){
 
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
-        sudo rm -r /home/$SUDO_USER/Downloads/*
+        sudo rm -rf /home/$SUDO_USER/Downloads/*
         sudo apt autoremove -y
 }
 
