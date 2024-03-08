@@ -182,8 +182,8 @@ function spotify(){
         git clone https://github.com/noctuid/zscroll
         cd zscroll
         sudo python3 setup.py install
-
-        sudo -u "$SUDO_USER" cp "/home/$SUDO_USER/Downloads/Entorno/.zshrc" "/home/$SUDO_USER/"
+        sudo rm "/home/$SUDO_USER/.config/polybar/forest/user_modules.ini"
+        sudo -u "$SUDO_USER" cp "/home/$SUDO_USER/Downloads/Entorno/polybar/forest/user_modules-copia.ini" "/home/$SUDO_USER/.config/polybar/forest/user_modules.ini"
 }
 
 function clean(){
