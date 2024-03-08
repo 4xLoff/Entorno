@@ -139,17 +139,15 @@ function script(){
         sudo wget -q https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
-	      ~/.fzf/install --all &>/dev/null
+        sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
+	      sudo -u "$SUDO_USER" /mome/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
         echo -e "${greenColour}Install nvcahd.${endColour}"
         sudo rm -rf /home/$SUDO_USER/.config/nvim
         pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
-        git clone https://github.com/NvChad/NvChad /home/$SUDO_USER/.config/nvim --depth 1
-        git clone https://github.com/NvChad/NvChad /home/$SUDO_USER/.config/nvim --depth 1 &>/dev/null
+        sudo -u "$SUDO_USER" git clone https://github.com/NvChad/NvChad /home/$SUDO_USER/.config/nvim --depth 1 &>/dev/null
         sudo rm -rf /root/.config/nvim
-        sudo git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1
         sudo git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
         sudo ln -s -f /opt/nvim-linux64/bin/nvim /usr/bin/
         sudo rm -f /opt/nvim-linux64.tar.gz
