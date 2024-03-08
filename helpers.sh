@@ -78,7 +78,12 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/scroll_spotify_status.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/get_spotify_status.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/target.sh"
-        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/*"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/checkupdates"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/launcher.sh"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/powermenu.sh"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/style-switch.sh"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/styles.sh"
+        sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/updates.sh"
         echo -e "${greenColour}Configure polybar fonts.${endColour}"
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/VaughnValle/blue-sky.git
