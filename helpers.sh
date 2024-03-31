@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+j#!/usr/bin/env bash
 
 # Author: Jhon Carlos Lara (aka 4xL)
 
@@ -140,7 +140,7 @@ function script(){
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
         sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
-	      sudo -u "$SUDO_USER" /mome/$SUDO_USER/.fzf/install --all &>/dev/null
+	      sudo -u "$SUDO_USER" /home/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
         echo -e "${greenColour}Install nvcahd.${endColour}"
