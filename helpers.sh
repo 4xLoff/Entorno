@@ -30,7 +30,7 @@ function check(){
 
 function other(){       
         echo -e "${greenColour}Update system.${endColour}"
-        cd /home/$USER/Downloads
+        cd /home/$SUDO_USER/Downloads
         sudo apt update && sudo apt upgrade -y
         sudo apt --fix-broken install
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
