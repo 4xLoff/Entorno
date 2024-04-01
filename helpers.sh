@@ -1,4 +1,4 @@
-j#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Author: Jhon Carlos Lara (aka 4xL)
 
