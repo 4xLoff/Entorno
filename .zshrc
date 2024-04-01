@@ -77,7 +77,7 @@ source  ~/powerlevel10k/powerlevel10k.zsh-theme
 export PATH=root/.local/bin:/snap/bin:/usr/sandbox/:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/nvim-linux64/bin:/usr/local/go/bin:$GOPATH/bin
 
 
-export ORACLE_HOME=/usr/lib/oracle/19.6/client64/
+export ORACLE_HOME=/usr/lib/oracle/21/client64/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
 export PATH=${ORACLE_HOME}bin:$PATH
 
@@ -108,6 +108,12 @@ alias burp='sudo /opt/Burp-Suite/burp'  # poner tu ruta burpsuite
 alias blackstone='nohup sudo /opt/BlackStone/xampp_installer/icon/simple_launch.sh > /dev/null 2>&1 &'
  
 
+#Zsh
+#Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+#Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
+source /usr/share/doc/fzf/examples/completion.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
