@@ -38,6 +38,7 @@ function other(){
         sudo apt install -y polybar picom burpsuite curl git feh scrot scrub zsh rofi xclip locate neofetch acpi code-oss bspwm sxhkd imagemagick snap caja kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock fzf pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 fontconfig ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists
 }
 
+#base instalation
 function script(){
         echo -e "${greenColour}The Bspwn environment will be installed.${endColour}"
         sleep 3
@@ -140,7 +141,7 @@ function script(){
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         echo -e "${greenColour}Install fzf.${endColour}"
         sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
-	      sudo -u "$SUDO_USER" /mome/$SUDO_USER/.fzf/install --all &>/dev/null
+	      sudo -u "$SUDO_USER" /home/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
         echo -e "${greenColour}Install nvcahd.${endColour}"
@@ -161,6 +162,7 @@ function script(){
         sudo chown "$SUDO_USER:$SUDO_USER" "/root/.local" -R
 }
 
+#reporting tools
 function hacker(){
          echo -e "${greenColour}The latex environment will be installed, this will take more than 30 minutes approximately..${endColour}"
          sleep 3
@@ -170,6 +172,7 @@ function hacker(){
          sudo dpkg -i obsidian_1.5.8_amd64.deb
 }
 
+#spotify configuration
 function spotify(){
         echo -e "${greenColour}Install spotify.${endColour}"
         sudo apt install playerctl -y
