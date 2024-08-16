@@ -30,6 +30,7 @@ function check(){
 
 function other(){       
         echo -e "${greenColour}Update system.${endColour}"
+        sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/Downloads
         cd /home/$SUDO_USER/Downloads
         sudo apt update && sudo apt upgrade -y
         sudo apt --fix-broken install
