@@ -36,21 +36,25 @@ function other(){
         sudo apt --fix-broken install
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        sudo apt install polybar picom burpsuite curl code git feh scrot scrub zsh rofi xclip locate neofetch acpi bspwm sxhkd imagemagick snap caja kitty ranger i3lock-fancy wmname firejail cmatrix htop python3-pip procps tty-clock pamixer flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 fontconfig ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting ranger seclists -y
+        sudo apt install polybar picom burpsuite curl code git feh scrot scrub zsh rofi xclip locate neofetch bspwm sxhkd imagemagick snap caja kitty ranger i3lock-fancy htop python3-pip tty-clock flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 fontconfig ffuf libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting bat lsd davtest seclists libcanberra-gtk-module -y
 }
 
-#base instalation
+#BaseInstalation
 function script(){
         echo -e "${greenColour}The Bspwn environment will be installed.${endColour}"
         sleep 3
         echo -e "${greenColour}Install core dependencies.${endColour}"
+        #InstallCore
         sudo apt install build-essential libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev libxcb-xtest0-dev libxcb-shape0-dev -y
         echo -e "${greenColour}Install polybar dependecies.${endColour}"
+        #InstallPolyvar
         sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev -y
         echo -e "${greenColour}Install picom dependencies.${endColour}"
+        #InstallPicom
         sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y
         echo -e "${greenColour}Install bspwn and sxhkd.${endColour}"
         cd /home/$SUDO_USER/Downloads/
+        #CloneRepo
         git clone https://github.com/baskerville/bspwm.git
         git clone https://github.com/baskerville/sxhkd.git
         cd bspwm/
@@ -58,7 +62,8 @@ function script(){
         sudo make install
         cd ../sxhkd/
         make
-        sudo make install        
+        sudo make install    
+        #CopyFiles    
         echo -e "${greenColour}Move files configuration.${endColour}"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwm" "/home/$SUDO_USER/.config/"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/sxhkd" "/home/$SUDO_USER/.config/"
@@ -86,6 +91,7 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/style-switch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/styles.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/updates.sh"
+        #ConfigurationPolyvar
         echo -e "${greenColour}Configure polybar fonts.${endColour}"
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/VaughnValle/blue-sky.git
@@ -104,6 +110,7 @@ function script(){
         meson --buildtype=release . build
         ninja -C build
         sudo ninja -C build install
+        #InstallPolybarCompilation
         echo -e "${greenColour}Polybar compilation .${endColour}"
         cd /home/$SUDO_USER/Downloads
         git clone --recursive https://github.com/polybar/polybar
@@ -113,9 +120,11 @@ function script(){
         cmake ..
         make -j$(nproc)
         sudo make install
+        #InstallPower
         echo -e "${greenColour}Download powerlevel10k.${endColour}"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$SUDO_USER/powerlevel10k
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k
+        #InstallFonts
         echo -e "${greenColour}Install Hack Nerd Fonts.${endColour}"
         cd /home/$SUDO_USER/Downloads 
         sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
@@ -125,6 +134,7 @@ function script(){
         fc-cache -v
         popd
         sudo apt update
+        #InstallWallpaper
         echo -e "${greenColour}Configuration wallpaper.${endColour}"
         cd /home/$SUDO_USER/Downloads
         sudo cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
@@ -132,19 +142,23 @@ function script(){
         sudo mkdir /usr/share/zsh-sudo
         sudo wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
         sudo cp sudo.plugin.zsh /usr/share/zsh-sudo/  
+        #InstallBatcat
         echo -e "${greenColour}Install batcat.${endColour}"
         cd /home/$SUDO_USER/Downloads
         sudo wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
         sudo dpkg -i bat-musl_0.24.0_amd64.deb
+        #InstallLSD
         echo -e "${greenColour}Install lsd.${endColour}"
         cd /home/$SUDO_USER/Downloads
         sudo wget -q https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-musl_1.0.0_amd64.deb
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
+        #Installfzf
         echo -e "${greenColour}Install fzf.${endColour}"
         sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
 	      sudo -u "$SUDO_USER" /home/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
+        #InstallNvchad
         echo -e "${greenColour}Install nvcahd.${endColour}"
         sudo rm -rf /home/$SUDO_USER/.config/nvim
         pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
@@ -153,6 +167,7 @@ function script(){
         sudo git clone https://github.com/NvChad/starter /root/.config/nvim --depth 1 &>/dev/null
         sudo ln -s -f /opt/nvim-linux64/bin/nvim /usr/bin/
         sudo rm -f /opt/nvim-linux64.tar.gz
+        #CreateLinks
         echo -e "${greenColour}Create links.${endColour}"
         sudo ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
         sudo ln -s -f /home/$SUDO_USER/.p10k.zsh /root/.p10k.zsh
