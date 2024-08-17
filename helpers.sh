@@ -68,6 +68,8 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/sxhkd/sxhkdrc"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/bspwmrc"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize"
+        sudo -u "$SUDO_USER" echo "/home/$SUDO_USER/.config/polybar/launch.sh --forest" >> /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize
+        sudo -u "$SUDO_USER" echo "picom --config /home/$SUDO_USER/.config/picom/picom.conf" >> /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/picom/picom.conf"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/kitty/kitty.conf"
