@@ -97,8 +97,8 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/sxhkd/sxhkdrc"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/bspwmrc"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize"
-        sudo -u "$SUDO_USER" echo "/home/$SUDO_USER/.config/polybar/launch.sh --forest" >> /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize
-        sudo -u "$SUDO_USER" echo "picom --config /home/$SUDO_USER/.config/picom/picom.conf" >> /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize
+        sudo -u "$SUDO_USER" echo "/home/$SUDO_USER/.config/polybar/launch.sh --forest" | sudo -u "$SUDO_USER" tee -a /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize > /dev/null
+        sudo -u "$SUDO_USER" echo "picom --config /home/$SUDO_USER/.config/picom/picom.conf" | sudo -u "$SUDO_USER" tee -a /home/$SUDO_USER/.config/bspwm/scripts/bspwm_resize > /dev/null
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/launch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/picom/picom.conf"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/kitty/kitty.conf"
@@ -130,7 +130,8 @@ function script(){
         #InstallWallpaper
         echo -e "${greenColour}Configuration wallpaper.${endColour}"
         cd /home/$SUDO_USER/Downloads
-        sudo cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures/
+        sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/Pictures
+        sudo cp -r /home/$SUDO_USER/Downloads/Entorno/3.png /home/$SUDO_USER/Pictures
         echo -e "${greenColour}Install plugin sudo.${endColour}"
         sudo mkdir /usr/share/zsh-sudo
         sudo wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
@@ -154,9 +155,8 @@ function script(){
         #InstallNvchad
         echo -e "${greenColour}Install nvcahd.${endColour}"
         sudo rm -rf /home/$SUDO_USER/.config/nvim
-        sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/.config/nvim
         pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
-        sudo -u "$SUDO_USER" git clone https://github.com/NvChad/starter /HOME/$SUDO_USER/.config/nvim && nvim
+        sudo -u "$SUDO_USER" git clone https://github.com/NvChad/starter /home/$SUDO_USER/.config/nvim && nvim
         sudo killall nvim
         sudo rm -rf /root/.config/nvim
         sudo git clone https://github.com/NvChad/starter /root/.config/nvim && nvim
@@ -203,6 +203,7 @@ function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         sudo rm -rf /home/$SUDO_USER/Downloads/*
         sudo apt --fix-broken install -y
+        sudo apt upgrade -y
         sudo apt autoremove -y
 }
 
