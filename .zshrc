@@ -154,6 +154,12 @@ function cleartarget(){
   echo Null > /tmp/name
 }
 
+if [ ! -f /tmp/cleartarget_ran ]; then
+    echo "Null" > /tmp/target
+    echo "Null" > /tmp/name
+    touch /tmp/cleartarget_ran
+fi
+
 
 function nmapi(){
     ip="$1"
