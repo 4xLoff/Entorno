@@ -203,7 +203,6 @@ function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         sudo rm -rf /home/$SUDO_USER/Downloads/*
         sudo apt --fix-broken install -y
-        sudo apt upgrade -y
         sudo apt autoremove -y
 }
 
