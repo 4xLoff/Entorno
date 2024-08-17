@@ -32,11 +32,13 @@ function other(){
         echo -e "${greenColour}Update system.${endColour}"
         sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/Downloads
         cd /home/$SUDO_USER/Downloads
-        sudo apt update && sudo apt upgrade -y
+        sudo apt update 
         sudo apt --fix-broken install
+        sudo apt autoremove -y
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        sudo apt install polybar picom burpsuite curl code git feh scrot scrub zsh rofi xclip locate neofetch bspwm sxhkd imagemagick snap caja kitty ranger i3lock-fancy htop python3-pip tty-clock flameshot python3 gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 fontconfig ffuf libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting bat lsd davtest seclists libcanberra-gtk-module -y
+        sudo apt install python3 zsh gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig libcanberra-gtk-module imagemagick gcc ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting bat lsd davtest ranger seclists -y
+
 }
 
 #BaseInstalation
@@ -45,8 +47,8 @@ function script(){
         sleep 3
         echo -e "${greenColour}Install core dependencies.${endColour}"
         #InstallCore
-        sudo apt install build-essential libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev libxcb-xtest0-dev libxcb-shape0-dev -y
-        echo -e "${greenColour}Install polybar dependecies.${endColour}"
+        sudo apt install build-essential git vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev libxcb-xtest0-dev libxcb-shape0-dev -y
+        echo -e "${greenColour}Install polybar dependecies.${en dColour}"
         #InstallPolyvar
         sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev -y
         echo -e "${greenColour}Install picom dependencies.${endColour}"
@@ -96,7 +98,7 @@ function script(){
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/VaughnValle/blue-sky.git
         cd /home/$SUDO_USER/Downloads/blue-sky/polybar/
-        sudo cp * -r ~/.config/polybar
+        sudo cp * -r /home/$SUDO_USER/.config/polybar
         cd fonts
         sudo cp * /usr/share/fonts/truetype/
         pushd /usr/share/fonts/truetype &>/dev/null 
@@ -133,7 +135,6 @@ function script(){
         pushd /usr/local/share/fonts/
         fc-cache -v
         popd
-        sudo apt update
         #InstallWallpaper
         echo -e "${greenColour}Configuration wallpaper.${endColour}"
         cd /home/$SUDO_USER/Downloads
@@ -154,7 +155,7 @@ function script(){
         sudo dpkg -i lsd-musl_1.0.0_amd64.deb
         #Installfzf
         echo -e "${greenColour}Install fzf.${endColour}"
-        sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
+        sudo -u "$SUDO_USER" git clone --depth 1 https://github.com/junegunn/fzf.git /home/$SUDO_USER/.fzf &>/dev/null
 	      sudo -u "$SUDO_USER" /home/$SUDO_USER/.fzf/install --all &>/dev/null
         sudo git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &>/dev/null
         sudo ~/.fzf/install --all &>/dev/null
@@ -206,6 +207,9 @@ function spotify(){
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         sudo rm -rf /home/$SUDO_USER/Downloads/*
+        sudo apt update
+        sudo apt upgrade -y
+        sudo apt --fix-broken install
         sudo apt autoremove -y
 }
 
