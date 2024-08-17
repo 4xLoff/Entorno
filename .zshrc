@@ -138,7 +138,7 @@ function fzf-lovely(){
 	fi
 }
 
-#Funcion para borrar archivox sin dejar rastro
+#Function for deleting files without leaving a trace
 function rmk(){
 	scrub -p dod $1
 	shred -zun 10 -v $1
@@ -149,18 +149,20 @@ function settarget(){
   echo $2 > /tmp/name
 }
 
+# Define the cleartarget function
 function cleartarget(){
   echo Null > /tmp/target
   echo Null > /tmp/name
 }
 
+# Execute the cleartarget function only if it has not been executed before
 if [ ! -f /tmp/cleartarget_ran ]; then
-    echo "Null" > /tmp/target
-    echo "Null" > /tmp/name
+    cleartarget
     touch /tmp/cleartarget_ran
 fi
 
 
+#Function nmap
 function nmapi(){
     ip="$1"
     if [ -z "$ip" ]; then
@@ -182,7 +184,7 @@ function nmapi(){
     nmap -sCV -p"$ports" $ip -oN targeted
 }
 
-# (Para usarla -> nmapi 10.10.x.x)
+# (USE -> nmapi 10.10.x.x)
 
 # Finalize Powerlevel10k instant prompt. Should stay at the bottom of ~/.zshrc.
 (( ! ${+functions[p10k-instant-prompt-finalize]} )) || p10k-instant-prompt-finalize
