@@ -188,7 +188,7 @@ function spotify(){
         sudo apt install playerctl -y
         curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
         echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-        sudo apt-get update && sudo apt-get install spotify-client
+        sudo apt-get install spotify-client -y
         cd /home/$SUDO_USER/Downloads
         git clone https://github.com/noctuid/zscroll
         cd zscroll
@@ -200,7 +200,8 @@ function spotify(){
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         sudo rm -rf /home/$SUDO_USER/Downloads/*
-        sudo apt --fix-broken install
+        sudo apt --fix-broken install -y
+        sudo apt upgrade -y
         sudo apt autoremove -y
 }
 
