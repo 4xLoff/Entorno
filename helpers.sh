@@ -155,9 +155,9 @@ function script(){
         echo -e "${greenColour}Install nvcahd.${endColour}"
         cd /home/$SUDO_USER/Downloads
         sudo rm -rf /home/$SUDO_USER/.config/nvim
-        sudo apt remove --purge nvim
-        sudo apt remove --purge neovim
-        sudo apt autoremove
+        sudo apt remove --purge nvim -y
+        sudo apt remove --purge neovim -y
+        sudo apt autoremove -y
         sudo wget -q https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim-linux64.deb 
         sudo dpkg -i nvim-linux64.deb 
         sudo -u "$SUDO_USER" git clone https://github.com/NvChad/starter /home/$SUDO_USER/.config/nvim && nvim
