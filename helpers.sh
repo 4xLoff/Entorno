@@ -55,6 +55,35 @@ function script(){
         cd ../sxhkd/
         make
         sudo make install    
+        #ConfigurationPolyvar
+        echo -e "${greenColour}Configure polybar fonts.${endColour}"
+        cd /home/$SUDO_USER/Downloads
+        git clone https://github.com/VaughnValle/blue-sky.git
+        cd /home/$SUDO_USER/Downloads/blue-sky/polybar/
+        sudo cp * -r /home/$SUDO_USER/.config/polybar
+        cd fonts
+        sudo cp * /usr/share/fonts/truetype/
+        pushd /usr/share/fonts/truetype &>/dev/null 
+        fc-cache -v
+        popd &>/dev/null
+        echo -e "${greenColour}Picom compilation.${endColour}"
+        cd /home/$SUDO_USER/Downloads
+        git clone https://github.com/ibhagwan/picom.git
+        cd picom/
+        git submodule update --init --recursive
+        meson --buildtype=release . build
+        ninja -C build
+        sudo ninja -C build install
+        #InstallPolybarCompilation
+        echo -e "${greenColour}Polybar compilation .${endColour}"
+        cd /home/$SUDO_USER/Downloads
+        git clone --recursive https://github.com/polybar/polybar
+        cd polybar/
+        mkdir build
+        cd build/
+        cmake ..
+        make -j$(nproc)
+        sudo make install
         #CopyFiles    
         echo -e "${greenColour}Move files configuration.${endColour}"
         sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/bspwm" "/home/$SUDO_USER/.config/"
@@ -85,35 +114,6 @@ function script(){
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/style-switch.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/styles.sh"
         sudo -u "$SUDO_USER" chmod +x "/home/$SUDO_USER/.config/polybar/forest/scripts/updates.sh"
-        #ConfigurationPolyvar
-        echo -e "${greenColour}Configure polybar fonts.${endColour}"
-        cd /home/$SUDO_USER/Downloads
-        git clone https://github.com/VaughnValle/blue-sky.git
-        cd /home/$SUDO_USER/Downloads/blue-sky/polybar/
-        sudo cp * -r /home/$SUDO_USER/.config/polybar
-        cd fonts
-        sudo cp * /usr/share/fonts/truetype/
-        pushd /usr/share/fonts/truetype &>/dev/null 
-        fc-cache -v
-        popd &>/dev/null
-        echo -e "${greenColour}Picom compilation.${endColour}"
-        cd /home/$SUDO_USER/Downloads
-        git clone https://github.com/ibhagwan/picom.git
-        cd picom/
-        git submodule update --init --recursive
-        meson --buildtype=release . build
-        ninja -C build
-        sudo ninja -C build install
-        #InstallPolybarCompilation
-        echo -e "${greenColour}Polybar compilation .${endColour}"
-        cd /home/$SUDO_USER/Downloads
-        git clone --recursive https://github.com/polybar/polybar
-        cd polybar/
-        mkdir build
-        cd build/
-        cmake ..
-        make -j$(nproc)
-        sudo make install
         #InstallPower
         echo -e "${greenColour}Download powerlevel10k.${endColour}"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$SUDO_USER/powerlevel10k
