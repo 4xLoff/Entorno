@@ -448,7 +448,7 @@
 
   # Display anchor directory segments in bold.
 
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
 
   # Don't shorten directories that contain any of these files. They are anchors.
 
@@ -3293,5 +3293,4 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 
 'builtin' 'unset' 'p10k_config_opts'
-
 

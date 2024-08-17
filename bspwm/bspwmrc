@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -16,12 +16,15 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 cleartarget
+#ProveVideoWallpaper
+#/opt/foo-Wallpaper-Feh-Gif/back4.sh auto /home/axel/Imágenes/rickmorty.gif &
 feh --bg-fill ~/Pictures/3.png
-~/.config/polybar/launch.sh --forest 
-picom --config ~/.config/picom/picom.conf
+/home/axel/.config/polybar/launch.sh --forest 
+picom --config /home/axel/.config/picom/picom.conf
 bspc config focus_follows_pointer true
 picom --experimental-backends &
-wmname LG3D &
+#FixBurpsuite
+wmname LG3D &    
 bspc config border_width 0
 xsetroot -cursor_name left_ptr &
 

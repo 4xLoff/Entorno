@@ -123,28 +123,23 @@ super + ctrl + {Left,Down,Up,Right}
 
 # Custom move resize
 super + {Left,Down,Up,Right}
-	/home/$USER/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 # Open firefoxsuper + shift + f
 super + shift + f
-    /usr/bin/firefox & disown
+    /usr/bin/firefox
 
 # Open Chrome
 super + shift + g
-    /opt/google/chrome/google-chrome & disown
-	
+    /opt/google/chrome/chrome & disown
 
-# BurpSuite PRO
-#super + x
-    #/usr/bin/burp & disown 
+# BurpSuite
+super + x
+    /bin/burp & disown 
 
 # BurpSuite-Community
 super + b
-	/usr/bin/burpsuite & disown
-
-# Obsidiam
-super + shift + o
-    /usr/bin/obsidian & disown
+	/usr/local/bin/BurpSuiteCommunity & disown
 
 # Bloquear pantalla
 super + q
