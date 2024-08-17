@@ -152,10 +152,13 @@ function script(){
         #InstallNvchad
         echo -e "${greenColour}Install nvcahd.${endColour}"
         sudo rm -rf /home/$SUDO_USER/.config/nvim
+        sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/.config/nvim
         pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
         sudo -u "$SUDO_USER" git clone https://github.com/NvChad/starter /HOME/$SUDO_USER/.config/nvim && nvim
+        sudo killall nvim
         sudo rm -rf /root/.config/nvim
         sudo git clone https://github.com/NvChad/starter /root/.config/nvim && nvim
+        sudo killall nvim
         sudo ln -s -f /opt/nvim-linux64/bin/nvim /usr/bin/
         sudo rm -f /opt/nvim-linux64.tar.gz
         #CreateLinks
