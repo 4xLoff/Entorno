@@ -31,6 +31,7 @@ function check(){
 function other(){       
         echo -e "${greenColour}Update system.${endColour}"
         sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/Downloads
+        sudo -u "$SUDO_USER" mv /home/$SUDO_USER/Entorno /home/$SUDO_USER/Downloads/
         cd /home/$SUDO_USER/Downloads
         sudo apt update 
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
