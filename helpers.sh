@@ -33,11 +33,9 @@ function other(){
         sudo -u "$SUDO_USER" mkdir -p /home/$SUDO_USER/Downloads
         cd /home/$SUDO_USER/Downloads
         sudo apt update 
-        sudo apt --fix-broken install
-        sudo apt autoremove -y
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        sudo apt install python3 zsh gcc g++ libfreetype6-dev libglib2.0-dev libcairo2-dev meson pkg-config gtk-doc-tools zlib1g-dev libpng16-16 liblcms2-2 librsync-dev libssl-dev libfreetype6 libfreetype6-dev fontconfig libcanberra-gtk-module imagemagick gcc ffuf pkg-config libdbus-1-dev libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libgl1-mesa-dev libxkbcommon-x11-dev libfontconfig1-dev libx11-xcb-dev liblcms2-dev libssl-dev libpython3-dev libharfbuzz-dev wayland-protocols libxxhash-dev bc zsh-syntax-highlighting bat lsd davtest ranger seclists -y
+        sudo apt install build-essential fontconfig libcanberra-gtk-module libpng16-16 libglib2.0-dev liblcms2-2 libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libxkbcommon-x11-dev libfontconfig1-dev libharfbuzz-dev wayland-protocols libxxhash-dev librsync-dev zsh-syntax-highlighting bc libpython3-dev python3 davtest ranger seclists imagemagick rofi caja gcc ffuf kitty bspwm feh xclip flameshot git vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev meson libxext-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-present-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y
 
 }
 
@@ -45,15 +43,6 @@ function other(){
 function script(){
         echo -e "${greenColour}The Bspwn environment will be installed.${endColour}"
         sleep 3
-        echo -e "${greenColour}Install core dependencies.${endColour}"
-        #InstallCore
-        sudo apt install build-essential git vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev libxcb-xtest0-dev libxcb-shape0-dev -y
-        echo -e "${greenColour}Install polybar dependecies.${en dColour}"
-        #InstallPolyvar
-        sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev -y
-        echo -e "${greenColour}Install picom dependencies.${endColour}"
-        #InstallPicom
-        sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y
         echo -e "${greenColour}Install bspwn and sxhkd.${endColour}"
         cd /home/$SUDO_USER/Downloads/
         #CloneRepo
@@ -207,8 +196,6 @@ function spotify(){
 function clean(){
         echo -ne "\n\t${purpleColour} We are cleaning everything.${endColour}"
         sudo rm -rf /home/$SUDO_USER/Downloads/*
-        sudo apt update
-        sudo apt upgrade -y
         sudo apt --fix-broken install
         sudo apt autoremove -y
 }
