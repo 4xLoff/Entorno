@@ -19,8 +19,8 @@ cleartarget
 #ProveVideoWallpaper
 #/opt/foo-Wallpaper-Feh-Gif/back4.sh auto /home/axel/Imágenes/rickmorty.gif &
 feh --bg-fill ~/Pictures/3.png
-/home/axel/.config/polybar/launch.sh --forest 
-picom --config /home/axel/.config/picom/picom.conf
++/.config/polybar/launch.sh --forest 
+picom --config ~/.config/picom/picom.conf
 bspc config focus_follows_pointer true
 picom --experimental-backends &
 #FixBurpsuite
