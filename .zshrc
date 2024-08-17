@@ -161,7 +161,6 @@ if [ ! -f /tmp/cleartarget_ran ]; then
     touch /tmp/cleartarget_ran
 fi
 
-
 #Function nmap
 function nmapi(){
     ip="$1"

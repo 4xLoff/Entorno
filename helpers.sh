@@ -36,8 +36,7 @@ function other(){
         sudo apt update 
         echo -e "${greenColour}Additional packages will be installed for the correct functioning of the environment.${endColour}"
         sleep 3
-        sudo apt install build-essential libpcre3-dev fontconfig libcanberra-gtk-module libpng16-16 libglib2.0-dev liblcms2-2 libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libxkbcommon-x11-dev libfontconfig1-dev libharfbuzz-dev wayland-protocols libxxhash-dev librsync-dev zsh-syntax-highlighting bc libpython3-dev python3 davtest ranger seclists imagemagick rofi caja gcc ffuf kitty bspwm feh xclip flameshot git vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev meson libxext-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-present-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y
-
+        sudo apt install build-essential libpcre3-dev fontconfig libcanberra-gtk-module libpng16-16 libglib2.0-dev liblcms2-2 libxcursor-dev libxrandr-dev libxi-dev libxinerama-dev libxkbcommon-x11-dev libfontconfig1-dev libharfbuzz-dev wayland-protocols libxxhash-dev librsync-dev zsh-syntax-highlighting bc libpython3-dev python3 davtest ranger seclists imagemagick rofi caja gcc ffuf kitty bspwm feh xclip flameshot vim libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev meson libxext-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-present-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y
 }
 
 #BaseInstalation
@@ -154,15 +153,18 @@ function script(){
         sudo ~/.fzf/install --all &>/dev/null
         #InstallNvchad
         echo -e "${greenColour}Install nvcahd.${endColour}"
+        cd /home/$SUDO_USER/Downloads
         sudo rm -rf /home/$SUDO_USER/.config/nvim
-        pushd /opt &>/dev/null && sudo wget -q https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz && sudo tar -xf nvim-linux64.tar.gz; popd &>/dev/null
+        sudo apt remove --purge nvim
+        sudo apt remove --purge neovim
+        sudo apt autoremove
+        sudo wget -q https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim-linux64.deb 
+        sudo dpkg -i nvim-linux64.deb 
         sudo -u "$SUDO_USER" git clone https://github.com/NvChad/starter /home/$SUDO_USER/.config/nvim && nvim
         sudo killall nvim
         sudo rm -rf /root/.config/nvim
         sudo git clone https://github.com/NvChad/starter /root/.config/nvim && nvim
         sudo killall nvim
-        sudo ln -s -f /opt/nvim-linux64/bin/nvim /usr/bin/
-        sudo rm -f /opt/nvim-linux64.tar.gz
         #CreateLinks
         echo -e "${greenColour}Create links.${endColour}"
         sudo ln -s -f /home/$SUDO_USER/.zshrc /root/.zshrc
