@@ -100,7 +100,7 @@
 
     # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
 
-    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
 
     # anaconda                # conda environment (https://conda.io/)
 
