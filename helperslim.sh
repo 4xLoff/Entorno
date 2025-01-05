@@ -326,7 +326,7 @@ function enviroment(){
     sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/picom" "/home/$SUDO_USER/.config/"
     sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/kitty" "/home/$SUDO_USER/.config/"
     sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/rofi" "/home/$SUDO_USER/.config/"
-    sudo cp "/home/$SUDO_USER/Downloads/Entorno/fastTCPscan.go.txt" "/opt/fastTCPscan"
+    sudo cp "/home/$SUDO_USER/Downloads/Entorno/fastTCPscan.go" "/opt/fastTCPscan"
     sudo chmod 755 /opt/fastTCPscan
     sudo ln -s -f "/opt/fastTCPscan" "/usr/local/bin/fastTCPscan"
     sudo -u "$SUDO_USER" cp -r "/home/$SUDO_USER/Downloads/Entorno/polybar/forest" "/home/$SUDO_USER/.config/polybar/forest"
